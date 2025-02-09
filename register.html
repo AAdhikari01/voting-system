@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register to Vote</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Register to Vote</h1>
+    <form id="register-form">
+      <label for="name">Enter your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      <label for="email">Enter your Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+      <label for="citizenship">Enter your address :</label>
+      <input type="text" id="citizenship" name="citizenship" placeholder="Your address" required>
+
+      <label for="citizenship-image">Upload a Citizenship Image (Passport/ID etc.):</label>
+      <input type="file" id="citizenship-image" name="citizenship-image" accept="image/*" required>
+
+      <div id="image-preview-container" style="display:none;">
+        <p><strong>Uploaded Citizenship Image:</strong></p>
+        <img id="image-preview" src="" alt="Citizenship Image" style="max-width: 200px; border-radius: 8px;">
+      </div>
+
+      <input type="submit" value="Register">
+    </form>
+  </div>
+
+  <script>
+    // Show the preview of the uploaded image
+    document.getElementById('citizenship-image').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          // Show the preview image
+          document.getElementById('image-preview').src = e.target.result;
+          document.getElementById('image-preview-container').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Handle form submission
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const citizenship = document.getElementById('citizenship').value;
+      const citizenshipImage = document.getElementById('citizenship-image').files[0];
+
+      if (citizenshipImage) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          // Save registration data in localStorage, including citizenship image as base64
+          const userData = {
+            name,
+            email,
+            citizenship,
+            citizenshipImage: e.target.result // Store the base64 string of the image
+          };
+          
+          localStorage.setItem('user', JSON.stringify(userData));
+
+          // Allow the user to proceed to vote
+          window.location.href = 'vote.html';
+        };
+        reader.readAsDataURL(citizenshipImage);
+      }
+    });
+  </script>
+</body>
+</html>

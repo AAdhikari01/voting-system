@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote for Your Choice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Vote for Your Choice</h1>
+
+    <p id="user-info"></p>
+    <div id="user-citizenship-image"></div>
+
+    <form id="vote-form">
+      <div class="candidate" data-candidate="candidate1">
+        <img src="pexels-august-de-richelieu-4427610.jpg" alt="Candidate 1">
+        <p>Candidate 1</p>
+        <input type="radio" name="candidate" value="candidate1">
+      </div>
+
+      <div class="candidate" data-candidate="candidate2">
+        <img src="pexels-august-de-richelieu-4427616.jpg" alt="Candidate 2">
+        <p>Candidate 2</p>
+        <input type="radio" name="candidate" value="candidate2">
+      </div>
+
+      <div class="candidate" data-candidate="candidate3">
+        <img src="pexels-august-de-richelieu-4427620.jpg" alt="Candidate 3">
+        <p>Candidate 3</p>
+        <input type="radio" name="candidate" value="candidate3">
+      </div>
+
+      <input type="submit" value="Vote Now">
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
